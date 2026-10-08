@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halo • Smart Adaptive Illumination System</title>
+  <meta name="description" content="Halo: WiFi-Controlled Directionally Addressable LED Bulb Simulation for shared spaces. 3-Axis Orthographic Projections and Smartphone Controller.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="template-body">
+  <!-- Subtle Pixel/Grid Mosaic Background Accent -->
+  <div class="pixel-mosaic-bg" aria-hidden="true"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar-container">
+    <div class="nav-content">
+      <a href="#hero" class="nav-brand">
+        <div class="brand-glyph">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-dasharray="4 2" />
+            <circle cx="12" cy="12" r="3" fill="currentColor" />
+          </svg>
+        </div>
+        <span class="brand-name">Halo</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#part1-phone" class="nav-link">CONTROLS (PART 1)</a>
+        <a href="#part2-simulation" class="nav-link">3-AXIS SIMULATION (PART 2)</a>
+        <a href="#abstract" class="nav-link">ABSTRACT &amp; LAB SPECS</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-nav-outline" id="btnExportAllImagesNav">
+          <span>Export 3-Axis Flat Images</span>
+          <span class="icon-arrow-box">↗</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-grid">
+      <!-- Left Column: Big Headline & 3D Glowing Glass Graphic -->
+      <div class="hero-left">
+        <h1 class="hero-headline">
+          Halo • Smart Adaptive Illumination for shared spaces.
+        </h1>
+
+        <!-- 3D Translucent Glowing Interlocking Glass Emblem -->
+        <div class="hero-3d-graphic" aria-label="Halo 3D Glass Emblem">
+          <div class="emblem-container">
+            <div class="glass-shape glass-top-green">
+              <div class="glass-inner-bevel"></div>
+              <div class="glass-glow-core"></div>
+            </div>
+            <div class="glass-shape glass-bottom-slate">
+              <div class="glass-inner-bevel"></div>
+              <div class="glass-glow-core"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: CTAs & Lab Attribution Bar (ESP32 monitor & description removed) -->
+      <div class="hero-right">
+        <div class="hero-right-content">
+          <span class="tag-mono">/ESP32 DIRECTIONAL LED BULB SYSTEM</span>
+          <div class="hero-feature-tags">
+            <span class="feature-badge">⚡ Multi-Sector Smart Light</span>
+            <span class="feature-badge">🛏️ Custom Furniture Placement</span>
+            <span class="feature-badge">📐 3 Orthographic CAD Projections</span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="hero-cta-row">
+            <a href="#part1-phone" class="btn-cta-primary">
+              <span>Control Phone Simulator</span>
+              <span class="arrow-box">↗</span>
+            </a>
+            <a href="#part2-simulation" class="btn-cta-secondary">
+              <span>View 3 Flat Orthographic Axes</span>
+              <span class="arrow-box-outline">↗</span>
+            </a>
+          </div>
+
+          <!-- Trust / Lab Attribution Bar -->
+          <div class="trust-bar">
+            <span class="tag-mono">/BAMAT207 PROBABILITY &amp; STATISTICS LAB PROJECT</span>
+            <div class="trust-logos">
+              <span class="lab-pill">Abdullah Aijaz (25BYB0123)</span>
+              <span class="lab-pill">Aarnav B. Mathur (25BYB0141)</span>
+              <span class="lab-pill">Usman Gani Ahmed (25BYB0150)</span>
+              <span class="lab-pill guide">Guide: Dr. Yamuna M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo Area (Part 1 Phone + Part 2 Simulation) -->
+  <section class="demo-section">
+    <div class="demo-container">
+
+      <!-- ========================================================
+           PART 1: SMARTPHONE CONTROLLER
+           ======================================================== -->
+      <div class="part-column phone-col" id="part1-phone">
+        <div class="column-header">
+          <span class="section-tag-mono">/PART 01</span>
+          <h2 class="column-title">Smartphone Controller Simulator</h2>
+          <p class="column-subtitle">Halo Mobile Client: Steer directions, toggle sectors &amp; position room furniture.</p>
+        </div>
+
+        <!-- Realistic Sleek Smartphone Frame -->
+        <div class="phone-device-wrap">
+          <div class="phone-device">
+            <!-- Dynamic Island -->
+            <div class="island-housing">
+              <div class="dynamic-island">
+                <span class="island-camera"></span>
+                <span class="island-sensor"></span>
+                <span class="island-status-led" id="islandStatusLed"></span>
+              </div>
+            </div>
+
+            <!-- Phone Screen -->
+            <div class="phone-display">
+              <!-- Status Bar -->
+              <div class="phone-top-bar">
+                <span class="phone-time" id="phoneClock">21:42</span>
+                <div class="phone-icons">
+                  <span class="network-badge">5G</span>
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                    <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/>
+                  </svg>
+                  <span class="battery-text">100%</span>
+                </div>
+              </div>
+
+              <!-- App Content Inside Phone -->
+              <div class="app-body">
+                <div class="app-header-strip">
+                  <div class="app-title-group">
+                    <span class="app-dot-glow"></span>
+                    <span class="app-name">Halo IoT</span>
+                  </div>
+                  <span class="esp-status-chip">
+                    <span class="chip-pulse"></span>
+                    <span>ESP32 ONLINE</span>
+                  </span>
+                </div>
+
+                <!-- Lighting Mode Selector: Continuous vs Smart Light (Multi-Sector) -->
+                <div class="lighting-mode-card">
+                  <div class="card-row">
+                    <span class="control-label-mono">/LIGHTING EMISSION MODE</span>
+                    <span class="mode-badge" id="modeBadge">Smart Light Active</span>
+                  </div>
+                  <div class="mode-switch-grid">
+                    <button class="btn-mode-tab" id="btnModeContinuous" data-mode="continuous">
+                      <span class="mode-icon">🎯</span>
+                      <span class="mode-title">Single Beam</span>
+                      <span class="mode-desc">Continuous Arc</span>
+                    </button>
+                    <button class="btn-mode-tab active" id="btnModeSmart" data-mode="smart">
+                      <span class="mode-icon">✨</span>
+                      <span class="mode-title">Smart Light</span>
+                      <span class="mode-desc">Multi-Sector Grid</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Multi-Sector Smart Light Selector (Shown in Smart Light mode) -->
+                <div class="phone-card smart-light-box" id="smartLightCard">
+                  <div class="card-row">
+                    <span class="control-label-mono">/MULTI-SECTOR SELECTION</span>
+                    <span class="sectors-count" id="sectorsCountBadge">3 / 8 Sectors Active</span>
+                  </div>
+                  <p class="smart-help-text">Select multiple non-continuous sectors to light distinct zones simultaneously:</p>
+
+                  <div class="sectors-grid" id="sectorsGrid">
+                    <button class="btn-sector" data-sector="0" title="Sector 1: North / Door (0°-45°)">
+                      <span class="sec-label">S1: Door</span>
+                      <span class="sec-deg">0°-45°</span>
+                    </button>
+                    <button class="btn-sector" data-sector="1" title="Sector 2: North-East (45°-90°)">
+                      <span class="sec-label">S2: NE</span>
+                      <span class="sec-deg">45°-90°</span>
+                    </button>
+                    <button class="btn-sector" data-sector="2" title="Sector 3: East / Bed Zone (90°-135°)">
+                      <span class="sec-label">S3: Bed</span>
+                      <span class="sec-deg">90°-135°</span>
+                    </button>
+                    <button class="btn-sector" data-sector="3" title="Sector 4: South-East (135°-180°)">
+                      <span class="sec-label">S4: SE</span>
+                      <span class="sec-deg">135°-180°</span>
+                    </button>
+                    <button class="btn-sector" data-sector="4" title="Sector 5: South / Window (180°-225°)">
+                      <span class="sec-label">S5: Window</span>
+                      <span class="sec-deg">180°-225°</span>
+                    </button>
+                    <button class="btn-sector" data-sector="5" title="Sector 6: South-West (225°-270°)">
+                      <span class="sec-label">S6: SW</span>
+                      <span class="sec-deg">225°-270°</span>
+                    </button>
+                    <button class="btn-sector active" data-sector="6" title="Sector 7: West / Desk Zone (270°-315°)">
+                      <span class="sec-label">S7: Desk</span>
+                      <span class="sec-deg">270°-315°</span>
+                    </button>
+                    <button class="btn-sector" data-sector="7" title="Sector 8: North-West (315°-360°)">
+                      <span class="sec-label">S8: NW</span>
+                      <span class="sec-deg">315°-360°</span>
+                    </button>
+                  </div>
+
+                  <div class="smart-quick-buttons">
+                    <button class="btn-quick-sec" id="btnSecDeskDoor">Desk + Door Only</button>
+                    <button class="btn-quick-sec" id="btnSecDeskWindow">Desk + Window Only</button>
+                    <button class="btn-quick-sec" id="btnSecShieldBed">Shield Bed (Zero Lux)</button>
+                  </div>
+                </div>
+
+                <!-- Scene Presets & + New Preset Option -->
+                <div class="preset-section">
+                  <div class="card-row">
+                    <span class="control-label-mono">/QUICK SCENES</span>
+                    <button class="btn-add-preset" id="btnOpenNewPreset" title="Create a custom preset from current settings">
+                      <span>+ New Preset</span>
+                    </button>
+                  </div>
+
+                  <!-- New Preset Inline Creator Form (Hidden by default) -->
+                  <div class="new-preset-form" id="newPresetForm" style="display: none;">
+                    <div class="preset-input-row">
+                      <input type="text" id="newPresetName" placeholder="Preset name (e.g. Late Work)" maxlength="18" class="preset-name-input">
+                      <button class="btn-save-preset" id="btnSavePreset">Save</button>
+                      <button class="btn-cancel-preset" id="btnCancelPreset">✕</button>
+                    </div>
+                  </div>
+
+                  <div class="preset-grid" id="presetGrid">
+                    <button class="btn-preset active" id="presetStudyR1" data-preset="study-r1">
+                      <span class="preset-emoji">📖</span>
+                      <div class="preset-meta">
+                        <span class="preset-title">Desk Study</span>
+                        <span class="preset-detail">R1 Desk Lit • Bed Dark</span>
+                      </div>
+                    </button>
+                    <button class="btn-preset" id="presetSleepR2" data-preset="sleep-r2">
+                      <span class="preset-emoji">🛌</span>
+                      <div class="preset-meta">
+                        <span class="preset-title">Sleep Safe</span>
+                        <span class="preset-detail">Bed Dark / 0 Lux Spill</span>
+                      </div>
+                    </button>
+                    <button class="btn-preset" id="presetBalanced" data-preset="balanced">
+                      <span class="preset-emoji">⚖️</span>
+                      <div class="preset-meta">
+                        <span class="preset-title">Shared 50/50</span>
+                        <span class="preset-detail">Dual Zone Split</span>
+                      </div>
+                    </button>
+                    <button class="btn-preset" id="presetRadial" data-preset="radial">
+                      <span class="preset-emoji">💡</span>
+                      <div class="preset-meta">
+                        <span class="preset-title">Standard Omni</span>
+                        <span class="preset-detail">Full 360° Radial</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Change Location of Bed & Table (Desk) -->
+                <div class="phone-card layout-box">
+                  <div class="card-row">
+                    <span class="control-label-mono">/ROOM FURNITURE PLACEMENT</span>
+                    <span class="pill-value" id="currentLayoutLabel">Default (Desk L, Bed R)</span>
+                  </div>
+                  <p class="layout-subtext">Change positions of the table and bed across the shared room:</p>
+                  <div class="layout-options-grid">
+                    <button class="btn-layout active" data-layout="default">
+                      <span class="layout-icon">🪑 🛌</span>
+                      <span class="layout-name">Standard</span>
+                      <span class="layout-detail">Desk: Left • Bed: Right</span>
+                    </button>
+                    <button class="btn-layout" data-layout="inverted">
+                      <span class="layout-icon">🛌 🪑</span>
+                      <span class="layout-name">Inverted</span>
+                      <span class="layout-detail">Bed: Left • Desk: Right</span>
+                    </button>
+                    <button class="btn-layout" data-layout="diagonal">
+                      <span class="layout-icon">↗ ↙</span>
+                      <span class="layout-name">Diagonal</span>
+                      <span class="layout-detail">Desk: Top • Bed: Bottom</span>
+                    </button>
+                    <button class="btn-layout" data-layout="opposite">
+                      <span class="layout-icon">↕</span>
+                      <span class="layout-name">Window/Door</span>
+                      <span class="layout-detail">Desk: Window • Bed: Door</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Direction Steering Dial -->
+                <div class="phone-card dial-box" id="continuousDialCard">
+                  <div class="card-row">
+                    <span class="control-label-mono">/DIRECTION STEERING (CONTINUOUS)</span>
+                    <span class="angle-badge" id="angleDisplay">270° (West / Desk)</span>
+                  </div>
+
+                  <div class="dial-wrap">
+                    <div class="compass-disc" id="compassRing">
+                      <span class="cardinal c-n">DOOR (0°)</span>
+                      <span class="cardinal c-e">EAST (90°)</span>
+                      <span class="cardinal c-s">WINDOW (180°)</span>
+                      <span class="cardinal c-w">WEST (270°)</span>
+
+                      <!-- Bulb Center Disc with 24 Addressable Virtual LEDs -->
+                      <div class="bulb-emitter-disc" id="bulbDisc">
+                        <div class="led-ring" id="ledRing"></div>
+                        <div class="bulb-core">
+                          <div class="core-glow" id="emitterCore"></div>
+                        </div>
+                      </div>
+
+                      <!-- Steering Vector Needle & Aperture Cone -->
+                      <div class="steering-needle" id="steeringNeedle">
+                        <div class="needle-cone" id="needleCone"></div>
+                        <div class="needle-arrow"></div>
+                      </div>
+
+                      <!-- Touch Joystick / Drag Area -->
+                      <div class="dial-touch-zone" id="dialTouchArea">
+                        <div class="dial-handle-puck" id="dialPuck">
+                          <div class="puck-dot"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Quick Direction Shortcuts -->
+                  <div class="dir-btn-row">
+                    <button class="btn-dir active" id="dirBtnR1" data-angle="270">◀ Focus Desk</button>
+                    <button class="btn-dir" id="dirBtnCenter" data-angle="90">Focus Bed ▶</button>
+                    <button class="btn-dir" id="dirBtnDual" data-mode="split">🌓 Split 180°</button>
+                  </div>
+                </div>
+
+                <!-- Beam Spread Aperture Slider (Continuous Mode) -->
+                <div class="phone-card" id="beamSpreadCard">
+                  <div class="card-row">
+                    <span class="control-label-mono">/BEAM SPREAD (APERTURE)</span>
+                    <span class="pill-value" id="beamSpreadVal">80° (Directional)</span>
+                  </div>
+                  <input type="range" id="beamSpreadSlider" min="30" max="360" step="5" value="80" class="custom-range">
+                  <div class="range-labels">
+                    <span>Spot (30°)</span>
+                    <span>Zone (90°)</span>
+                    <span>Half (180°)</span>
+                    <span>Omni (360°)</span>
+                  </div>
+                </div>
+
+                <!-- Master Intensity & Dual Roommate Sliders -->
+                <div class="phone-card">
+                  <div class="card-row">
+                    <span class="control-label-mono">/MASTER LUMEN INTENSITY</span>
+                    <span class="pill-value highlight-lime" id="masterIntensityVal">75% (900 lm)</span>
+                  </div>
+                  <input type="range" id="masterIntensitySlider" min="0" max="100" step="1" value="75" class="custom-range range-lime">
+
+                  <!-- Independent Roommate Sliders -->
+                  <div class="dual-roommate-wrap">
+                    <div class="roommate-sub-slider">
+                      <div class="sub-header">
+                        <span class="r1-title">Study Desk Zone</span>
+                        <span class="val-mono" id="r1IntensityVal">85%</span>
+                      </div>
+                      <input type="range" id="r1Slider" min="0" max="100" step="5" value="85" class="custom-range range-blue">
+                    </div>
+
+                    <div class="roommate-sub-slider">
+                      <div class="sub-header">
+                        <span class="r2-title">Sleeping Bed Zone</span>
+                        <span class="val-mono" id="r2IntensityVal">0% (Off)</span>
+                      </div>
+                      <input type="range" id="r2Slider" min="0" max="100" step="5" value="0" class="custom-range range-purple">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           PART 2: SHARED ROOM SIMULATION ACROSS 3 FLAT AXES
+           ======================================================== -->
+      <div class="part-column simulation-col" id="part2-simulation">
+        <div class="column-header-row">
+          <div>
+            <span class="section-tag-mono">/PART 02</span>
+            <h2 class="column-title">Shared Dorm Room Simulation (3 Flat Orthographic Axes)</h2>
+            <p class="column-subtitle">Orthographic architectural projections showing photometric illumination across Roommate 1 and Roommate 2.</p>
+          </div>
+
+          <!-- View Mode Tabs -->
+          <div class="axis-view-tabs" role="tablist">
+            <button class="tab-pill active" id="tabAllAxes" data-view="grid">All 3 Axes</button>
+            <button class="tab-pill" id="tabTopAxis" data-view="top">Top View (XY)</button>
+            <button class="tab-pill" id="tabFrontAxis" data-view="front">Front View (XZ)</button>
+            <button class="tab-pill" id="tabSideAxis" data-view="side">Side View (YZ)</button>
+          </div>
+        </div>
+
+        <!-- Real-Time Photometric Comfort Cards -->
+        <div class="comfort-dashboard-row">
+          <div class="comfort-badge-card">
+            <div class="comfort-top">
+              <span class="badge-role">DESK SENSOR</span>
+              <span class="badge-tag tag-green" id="tagR1Status">Optimal for Study (300-500 lx)</span>
+            </div>
+            <div class="comfort-val-row">
+              <span class="comfort-number" id="metricR1Lux">485 Lux</span>
+              <span class="comfort-sub">Target: 300 - 500 lx</span>
+            </div>
+          </div>
+
+          <div class="comfort-badge-card">
+            <div class="comfort-top">
+              <span class="badge-role">BED SENSOR</span>
+              <span class="badge-tag tag-green" id="tagR2Status">Dark / Zero Glare (&lt;10 lx)</span>
+            </div>
+            <div class="comfort-val-row">
+              <span class="comfort-number" id="metricR2Lux">4 Lux</span>
+              <span class="comfort-sub">Sleep Safety Threshold: &lt; 15 lx</span>
+            </div>
+          </div>
+
+          <div class="comfort-badge-card highlight-card">
+            <div class="comfort-top">
+              <span class="badge-role">CONFLICT RESOLUTION</span>
+              <span class="badge-tag tag-lime">NO LIGHT SPILL</span>
+            </div>
+            <div class="comfort-val-row">
+              <span class="comfort-number text-lime" id="metricConflictIndex">100% Conflict Free</span>
+              <span class="comfort-sub">Smart Light Directional Isolation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 FLAT AXIS PROJECTION CARDS -->
+        <div class="axes-stack" id="axesContainer">
+
+          <!-- AXIS 1: TOP-DOWN VIEW (X-Y PLANE) -->
+          <article class="flat-axis-card" id="axisCardTop">
+            <div class="axis-header">
+              <div class="axis-meta">
+                <span class="axis-badge">AXIS 1 : X - Y PLANE</span>
+                <h3 class="axis-title">Top-Down Floor Plan (Architectural Overhead View)</h3>
+                <p class="axis-details">Horizontally divided room: Table and bed dynamically positioned with real-time multi-sector beams and lux heatmaps.</p>
+              </div>
+              <button class="btn-download-flat" id="btnDownloadTop" title="Download Top View PNG">
+                <span>Download PNG</span>
+                <span class="btn-arrow">↗</span>
+              </button>
+            </div>
+
+            <div class="viewport-box">
+              <canvas id="canvasTop" width="760" height="480"></canvas>
+              <div class="viewport-hud">
+                <span class="hud-marker marker-blue" id="hudTopDesk">STUDY DESK</span>
+                <span class="hud-divider">SYMMETRY DIVIDER (BULB)</span>
+                <span class="hud-marker marker-purple" id="hudTopBed">SLEEPING BED</span>
+              </div>
+            </div>
+
+            <div class="axis-legend-row">
+              <div class="legend-unit"><span class="legend-swatch lux-high"></span> &gt; 400 Lux (Task Zone)</div>
+              <div class="legend-unit"><span class="legend-swatch lux-mid"></span> 100 - 300 Lux (Ambient Area)</div>
+              <div class="legend-unit"><span class="legend-swatch lux-low"></span> &lt; 15 Lux (Sleep Shadow Area)</div>
+            </div>
+          </article>
+
+          <!-- AXIS 2: FRONT ELEVATION VIEW (X-Z PLANE) -->
+          <article class="flat-axis-card" id="axisCardFront">
+            <div class="axis-header">
+              <div class="axis-meta">
+                <span class="axis-badge">AXIS 2 : X - Z PLANE</span>
+                <h3 class="axis-title">Front Elevation (Transverse Cross-Section)</h3>
+                <p class="axis-details">Cross-section showing downward volumetric beams illuminating selected sectors while shielding the bed from glare.</p>
+              </div>
+              <button class="btn-download-flat" id="btnDownloadFront" title="Download Front Elevation PNG">
+                <span>Download PNG</span>
+                <span class="btn-arrow">↗</span>
+              </button>
+            </div>
+
+            <div class="viewport-box">
+              <canvas id="canvasFront" width="760" height="480"></canvas>
+              <div class="viewport-hud">
+                <span class="hud-marker marker-blue">STUDY OCCUPANT</span>
+                <span class="hud-marker marker-lime">CEILING FIXTURE (H: 2.8m)</span>
+                <span class="hud-marker marker-purple">BED OCCUPANT</span>
+              </div>
+            </div>
+
+            <div class="axis-legend-row">
+              <div class="legend-unit">Active Mode: <strong id="cutoffAngleText">Smart Light (Multi-Sector)</strong></div>
+              <div class="legend-unit">Ceiling Bounce: <strong>&lt; 6% Diffuse</strong></div>
+            </div>
+          </article>
+
+          <!-- AXIS 3: SIDE ELEVATION VIEW (Y-Z PLANE) -->
+          <article class="flat-axis-card" id="axisCardSide">
+            <div class="axis-header">
+              <div class="axis-meta">
+                <span class="axis-badge">AXIS 3 : Y - Z PLANE</span>
+                <h3 class="axis-title">Side Elevation (Longitudinal Depth Profile)</h3>
+                <p class="axis-details">Looking along room divider from the side, demonstrating depth beam spread, window wall, and door entryway.</p>
+              </div>
+              <button class="btn-download-flat" id="btnDownloadSide" title="Download Side Elevation PNG">
+                <span>Download PNG</span>
+                <span class="btn-arrow">↗</span>
+              </button>
+            </div>
+
+            <div class="viewport-box">
+              <canvas id="canvasSide" width="760" height="480"></canvas>
+              <div class="viewport-hud">
+                <span class="hud-marker marker-blue">WINDOW WALL</span>
+                <span class="hud-marker marker-lime">DIVIDER AXIS (Y=0)</span>
+                <span class="hud-marker marker-orange">ENTRY DOORWAY</span>
+              </div>
+            </div>
+
+            <div class="axis-legend-row">
+              <div class="legend-unit">Longitudinal Coverage: <strong id="sideApertureText">Multi-Zone Profile</strong></div>
+              <div class="legend-unit">Wall Illuminance: <strong id="wallIlluminanceText">Ambient 50 lx</strong></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract & Scientific Comparison Section -->
+  <section class="abstract-section" id="abstract">
+    <div class="abstract-container">
+      <div class="abstract-header">
+        <span class="section-tag-mono">/LAB RESEARCH ABSTRACT</span>
+        <h2 class="abstract-title">Halo Smart Adaptive Illumination: Problem vs. Solution</h2>
+      </div>
+
+      <div class="comparison-cards">
+        <div class="comp-box comp-bad">
+          <div class="comp-header">
+            <span class="comp-icon">✕</span>
+            <h3>Conventional LED Bulb (Fixed Radial)</h3>
+          </div>
+          <ul class="comp-list">
+            <li><strong>Fixed Lumen Output:</strong> Incapable of dynamic dimming or per-task lumen regulation.</li>
+            <li><strong>Unadjustable Radial Emission:</strong> Radiates uniformly in all 360° directions without spatial selectivity.</li>
+            <li><strong>Roommate Conflict:</strong> Studying late at night floods the entire room with &gt; 150 Lux, disturbing the sleeping roommate.</li>
+            <li><strong>Energy Inefficiency:</strong> Emits full power into unoccupied quadrants of the room.</li>
+          </ul>
+        </div>
+
+        <div class="comp-box comp-good">
+          <div class="comp-header">
+            <span class="comp-icon comp-check">✓</span>
+            <h3>Halo ESP32 Directionally Addressable Bulb</h3>
+          </div>
+          <ul class="comp-list">
+            <li><strong>Multi-Sector Smart Light:</strong> Illuminates multiple smaller non-continuous sectors simultaneously.</li>
+            <li><strong>Custom Furniture Positioning:</strong> Adapts beam output to arbitrary placements of the desk and bed.</li>
+            <li><strong>Zero Glare for Sleeping Roommate:</strong> Keeps the bed area in absolute darkness (&lt; 5 Lux) while providing &gt; 400 Lux at the desk.</li>
+            <li><strong>Over 50% Power Savings:</strong> Deactivates unneeded LEDs, conserving energy and extending bulb lifespan.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="brand-glyph-sm">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-dasharray="4 2" />
+            <circle cx="12" cy="12" r="3" fill="currentColor" />
+          </svg>
+        </div>
+        <span>Halo • Smart Adaptive Illumination</span>
+      </div>
+      <p class="footer-copy">
+        BAMAT207 Probability &amp; Statistics Lab • Abdullah Aijaz, Aarnav Bahadur Mathur, Usman Gani Ahmed • Guided by Dr. Yamuna M
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
